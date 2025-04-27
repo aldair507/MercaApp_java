@@ -44,8 +44,8 @@ public class InicioSesion {
     private static void menuRol() {
         switch (usuarioLogueado.getRol()) {
             case "Administrador" -> Administrador.menuAdministrador();
-            case "M" -> Microempresario.menuMicroempresario();
-            case "V" -> Vendedor.menuVendedor();
+            case "Microempresario" -> Microempresario.menuMicroempresario();
+            case "Vendedor" -> Vendedor.menuVendedor();
 
             default -> System.out.println("Rol no reconocido");
         }
