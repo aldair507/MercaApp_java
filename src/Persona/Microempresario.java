@@ -36,7 +36,7 @@ public class Microempresario {
         }
     }
 
-    private static void agregarProducto() {
+    public static void agregarProducto() {
 
         System.out.print("""
                 \n=================== AGREGAR PRODUCTO ====================
@@ -78,7 +78,7 @@ public class Microempresario {
         System.out.println("Producto no encontrado!");
     }
 
-    private static void actualizarProducto() {
+    public static void actualizarProducto() {
         mostrarInventario();
 
         String id = Input.getString("""

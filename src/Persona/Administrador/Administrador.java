@@ -6,13 +6,17 @@ import Persona.InicioSesion;
 import Persona.Registro;
 import Persona.Usuario;
 import Utils.Input;
+import static Persona.Microempresario.agregarProducto;
+import static Inventario.Inventario.mostrarInventario;
+import static Persona.Microempresario.actualizarProducto;;
 
 public class Administrador {
     static String respuesta = "s";
 
     public static void menuAdministrador() {
         while (true) {
-            System.out.println("\n================ ADMINISTRADOR "+InicioSesion.usuarioLogueado.getUsername()+" =================");
+            System.out.println("\n================ ADMINISTRADOR " + InicioSesion.usuarioLogueado.getUsername()
+                    + " =================");
             System.out.print("""
                     1. Ver usuarios
                     2. Registrar usuario
@@ -20,7 +24,8 @@ public class Administrador {
                     4. Eliminar usuario
                     5. Ver inventario
                     6. Registrar producto
-                    7. Salir
+                    7. Actualizar producto
+                    8. Salir
                     =========================================================
                     """);
 
@@ -33,7 +38,8 @@ public class Administrador {
                 case 4 -> eliminarUsuario();
                 case 5 -> verInventario();
                 case 6 -> registrarProducto();
-                case 7 -> {
+                case 7 -> actualizarInfoProducto();
+                case 8 -> {
                     return;
                 }
                 default -> System.out.println("Opción inválida");
@@ -48,13 +54,15 @@ public class Administrador {
             System.out.println("\n================= USUARIOS REGISTRADOS ==================");
             for (Usuario u : DataManager.getUsuarios()) {
                 System.out
-                .println("ID: " + u.getIdUsuario() + " | Usuario: " + u.getUsername() + " | Rol: " + u.getRol());
+                        .println(
+                                "ID: " + u.getIdUsuario() + " | Usuario: " + u.getUsername() + " | Rol: " + u.getRol());
             }
             System.out.println("=========================================================");
         }
     }
 
     private static void buscarUsuario() {
+        verUsuarios();
 
         int idBuscado = Input.getInt("Ingrese el ID del usuario a buscar: ");
         Input.scanner.nextLine();
@@ -123,7 +131,11 @@ public class Administrador {
     }
 
     private static void registrarProducto() {
-        System.out.println("Funcionalidad de registrar producto aún no implementada aquí.");
-        // Puedes llamar aquí al método que ya tengas para registrar productos.
+        agregarProducto();
+    }
+
+    private static void actualizarInfoProducto() {
+     
+        actualizarProducto();
     }
 }

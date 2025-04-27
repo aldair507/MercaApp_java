@@ -104,14 +104,14 @@ public class Vendedor {
         }
 
         for (Venta v : ventas) {
-            // System.out.println("===================== VENDEDOR vend1 ====================");
+
             System.out.println("\n========================= Venta " + contador++ + " =======================");
 
             sumatoriaVenta += v.calcularTotal();
             System.out.println(v);
 
         }
-        // System.out.println("===================== VENDEDOR vend1 ====================");
+
         System.out.println("============ Total ventas del dia : $" + sumatoriaVenta + " ============");
     }
 
