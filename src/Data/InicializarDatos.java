@@ -1,4 +1,4 @@
-import Data.DataManager;
+package Data;
 import Persona.Usuario;
 import Producto.Producto;
 import java.util.List;
@@ -15,8 +15,8 @@ public class InicializarDatos {
         DataManager.agregarUsuario(new Usuario("vend1", "vend123", "V"));
 
         // Productos iniciales
-        DataManager.agregarProducto(new Producto("P001", "Laptop", 10, 1500.0));
-        DataManager.agregarProducto(new Producto("P002", "Mouse", 50, 25.0));
+        DataManager.agregarProducto(new Producto("P001", "Papa", 10, 1500.0));
+        DataManager.agregarProducto(new Producto("P002", "Yuca", 10, 2500.0));
     }
 
 }

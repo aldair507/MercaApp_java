@@ -11,12 +11,14 @@ public class Registro {
         String rol;
         boolean rolValido = false;
 
-        System.out.println("=================== REGISTRO DE USUARIO =================");
-        System.out.println("Por favor, complete los siguientes datos para registrarse.");
-        System.out.print("Usuario: ");
-        user = Input.scanner.nextLine();
-        System.out.print("Contraseña: ");
-        pass = Input.scanner.nextLine();
+        System.out.print("""
+            \n=================== REGISTRO DE USUARIO ==================
+            Por favor, complete los siguientes datos para registrarse.
+            ==========================================================      
+                    """);
+        
+        user = Input.getString("Usuario: ");
+        pass = Input.getString("Contrasena: ");
 
         do {
             System.out.print("Rol (Microempresario (M) /Vendedor (V)): ");

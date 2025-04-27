@@ -3,11 +3,10 @@ package Persona;
 import Data.DataManager;
 import Inventario.Inventario;
 import Producto.Producto;
+import Utils.Input;
 import Venta.CalculoConIVA;
 import Venta.Venta;
 import java.util.List;
-
-import Utils.Input;
 
 /**
  * Esta clase representa al vendedor en el sistema.
@@ -19,18 +18,16 @@ public class Vendedor {
     public static void menuVendedor() {
         while (true) {
 
-            System.out.println(" "
-                    + "Bienvendo" + " " + InicioSesion.usuarioLogueado.getUsername() + "!");
-            System.out.println("""
-                    === VENDEDOR ===
+            System.out.println("\n===================== VENDEDOR " + InicioSesion.usuarioLogueado.getUsername()
+                    + " ====================");
+            System.out.print("""
                     1. Nueva venta
                     2. Ver ventas
                     3. Salir
                     """);
-            System.out.print("Seleccione opción: ");
 
-            int opcion = Input.scanner.nextInt();
-            Input.scanner.nextLine();
+            int opcion = Input.getInt("Seleccione opción: ");
+            Input.scanner.nextLine(); // Limpiar el buffer
 
             switch (opcion) {
                 case 1 -> realizarVenta();
@@ -93,7 +90,7 @@ public class Vendedor {
 
         // Registrar la venta después de finalizar la compra
         DataManager.agregarVenta(venta);
-        System.out.println("Venta registrada! Total: $" + venta.calcularTotal());
+        System.out.println("\nVenta registrada! Total: $" + venta.calcularTotal());
     }
 
     public static void mostrarVentas() {
@@ -102,18 +99,20 @@ public class Vendedor {
         double sumatoriaVenta = 0;
 
         if (ventas.isEmpty()) {
-            System.out.println("No hay ventas registradas.");
+            System.out.println("\nNo hay ventas registradas.");
             return;
         }
 
         for (Venta v : ventas) {
-            System.out.println("=== Venta " + contador++ + " ===");
+            // System.out.println("===================== VENDEDOR vend1 ====================");
+            System.out.println("\n========================= Venta " + contador++ + " =======================");
 
             sumatoriaVenta += v.calcularTotal();
             System.out.println(v);
 
         }
-        System.out.println("=== Total ventas del dia : $" + sumatoriaVenta + " ===");
+        // System.out.println("===================== VENDEDOR vend1 ====================");
+        System.out.println("============ Total ventas del dia : $" + sumatoriaVenta + " ============");
     }
 
 }

@@ -34,7 +34,11 @@ public class Input {
 
     public static String getString(String message) {
         System.out.print(message);
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+        if (input.isEmpty()) {
+            input = scanner.nextLine();
+        }
+        return input;
     }
 }
 

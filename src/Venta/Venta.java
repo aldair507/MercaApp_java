@@ -29,16 +29,18 @@ public class Venta {
     @Override
     public String toString() {
         StringBuilder detallesVenta = new StringBuilder();
-        detallesVenta.append("=== Detalles de la Venta ===\n");
+        detallesVenta.append("================== Detalles de la Venta =================\n");
         for (int i = 0; i < productosVenta.size(); i++) {
             Producto producto = productosVenta.get(i);
             int cantidad = cantidades.get(i);
 
-            detallesVenta.append("=== " + " ===\n");
+            detallesVenta.append("---------------------------------------------------------\n");
             detallesVenta.append(String.format("Producto: %s | Cantidad: %d | Precio unitario: $%.2f\n",
                     producto.getNombre(), cantidad, producto.getPrecio()));
         }
-        detallesVenta.append("\nTotal: $").append(calcularTotal()).append("\n");
+        detallesVenta.append("---------------------------------------------------------\n");
+        detallesVenta.append("Total: $").append(calcularTotal()).append(" |\n");
+        detallesVenta.append("------------------\n");
         return detallesVenta.toString();
     }
 }

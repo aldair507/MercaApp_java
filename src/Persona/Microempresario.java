@@ -1,21 +1,21 @@
 package Persona;
 
-import Producto.Producto;
-import Utils.Input;
-
 import Data.DataManager;
 import Inventario.Inventario;
+import Producto.Producto;
+import Utils.Input;
 
 public class Microempresario {
 
     public static void menuMicroempresario() {
         while (true) {
-            System.out.println("""
-                    === MICROEMPRESARIO ===
+            System.out.println("\n================ MICROEMPRESARIO "+InicioSesion.usuarioLogueado.getUsername()+" =================");
+            System.out.print("""
                     1. Agregar producto
                     2. Actualizar stock
                     3. Ver inventario
                     4. Salir
+                    =========================================================
                     """);
             System.out.print("Seleccione opción: ");
 

@@ -48,8 +48,8 @@ public class Usuario {
             this.rol = "Vendedor";
         } else if (rol.equals("M")) {
             this.rol = "Microempresario";
-        } else {
-            this.rol = rol;
-        }
+        } 
+        
+        // this.rol = rol;
     }
 }

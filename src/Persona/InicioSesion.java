@@ -2,9 +2,8 @@ package Persona;
 
 import Data.DataManager;
 import Persona.Administrador.Administrador;
-
-import java.util.List;
 import Utils.Input;
+import java.util.List;
 
 public class InicioSesion {
 
@@ -12,19 +11,23 @@ public class InicioSesion {
     public static Usuario usuarioLogueado;
 
     public static void iniciarSesion() {
-        System.out.println("""
-                \n=================== INICIO DE SESIÓN =================
+        System.out.print("""
+                \n==================== INICIO DE SESION ===================
                 Por favor, ingrese sus credenciales.
-                ======================================================""");
-        System.out.print("Usuario: ");
-        String usuarioIngresado = Input.scanner.nextLine();
-        System.out.print("Contraseña: ");
-        String contrasenaIngresada = Input.scanner.nextLine();
+                =========================================================
+                """);
+
+        // System.out.print("Usuario: ");
+        String usuarioIngresado = Input.getString("Usuario: ");
+
+        // System.out.print("Contraseña: ");
+        String contrasenaIngresada = Input.getString("Contraseña: ");
 
         for (Usuario u : usuarios) {
             if (u.getUsername().equals(usuarioIngresado)) {
 
                 if (u.getPassword().equals(contrasenaIngresada)) {
+                    System.out.print("\nBienvenido " + u.getUsername() + "!");
                     usuarioLogueado = u;
                     menuRol();
                     return;
@@ -35,7 +38,7 @@ public class InicioSesion {
             }
         }
 
-        System.out.println("Usuario no encontrado!");
+        System.err.println("\nUsuario no encontrado!\n");
     }
 
     private static void menuRol() {
@@ -43,7 +46,7 @@ public class InicioSesion {
             case "Administrador" -> Administrador.menuAdministrador();
             case "M" -> Microempresario.menuMicroempresario();
             case "V" -> Vendedor.menuVendedor();
-            
+
             default -> System.out.println("Rol no reconocido");
         }
     }

@@ -2,6 +2,7 @@ package Persona.Administrador;
 
 import Data.DataManager;
 import Inventario.Inventario;
+import Persona.InicioSesion;
 import Persona.Registro;
 import Persona.Usuario;
 import Utils.Input;
@@ -11,8 +12,8 @@ public class Administrador {
 
     public static void menuAdministrador() {
         while (true) {
-            System.out.println("""
-                    === ADMINISTRADOR ===
+            System.out.println("\n================ ADMINISTRADOR "+InicioSesion.usuarioLogueado.getUsername()+" =================");
+            System.out.print("""
                     1. Ver usuarios
                     2. Registrar usuario
                     3. Buscar usuario
@@ -20,11 +21,10 @@ public class Administrador {
                     5. Ver inventario
                     6. Registrar producto
                     7. Salir
+                    =========================================================
                     """);
-            System.out.print("Seleccione opción: ");
 
-            int opcion = Input.scanner.nextInt();
-            Input.scanner.nextLine(); // limpiar buffer
+            int opcion = Input.getInt("Seleccione opción: ");
 
             switch (opcion) {
                 case 1 -> verUsuarios();
@@ -45,11 +45,12 @@ public class Administrador {
         if (DataManager.getUsuarios().isEmpty()) {
             System.out.println("No hay usuarios registrados.");
         } else {
-            System.out.println("\n=== USUARIOS REGISTRADOS ===");
+            System.out.println("\n================= USUARIOS REGISTRADOS ==================");
             for (Usuario u : DataManager.getUsuarios()) {
                 System.out
-                        .println("ID: " + u.getIdUsuario() + " Usuario: " + u.getUsername() + " | Rol: " + u.getRol());
+                .println("ID: " + u.getIdUsuario() + " | Usuario: " + u.getUsername() + " | Rol: " + u.getRol());
             }
+            System.out.println("=========================================================");
         }
     }
 
