@@ -1,7 +1,7 @@
 package Persona;
 
 import Data.DataManager;
-import Inventario.Inventario;
+import static Inventario.Inventario.mostrarInventario;
 import Producto.Producto;
 import Utils.Input;
 
@@ -12,9 +12,10 @@ public class Microempresario {
             System.out.println("\n================ MICROEMPRESARIO "+InicioSesion.usuarioLogueado.getUsername()+" =================");
             System.out.print("""
                     1. Agregar producto
-                    2. Actualizar stock
-                    3. Ver inventario
-                    4. Salir
+                    2. Actualizar producto
+                    3. Actualizar stock
+                    4. Ver inventario
+                    5. Salir
                     =========================================================
                     """);
             System.out.print("Seleccione opción: ");
@@ -24,9 +25,10 @@ public class Microempresario {
 
             switch (opcion) {
                 case 1 -> agregarProducto();
-                case 2 -> actualizarStock();
-                case 3 -> Inventario.mostrarInventario();
-                case 4 -> {
+                case 2 -> actualizarProducto();
+                case 3 -> actualizarStock();
+                case 4 -> mostrarInventario();
+                case 5 -> {
                     return;
                 }
                 default -> System.out.println("Opción inválida");
@@ -35,29 +37,36 @@ public class Microempresario {
     }
 
     private static void agregarProducto() {
-        System.out.print("ID Producto: ");
-        String id = Input.scanner.nextLine();
-        System.out.print("Nombre: ");
-        String nombre = Input.scanner.nextLine();
-        System.out.print("Cantidad inicial: ");
-        int cantidad = Input.scanner.nextInt();
-        System.out.print("Precio: ");
-        double precio = Input.scanner.nextDouble();
+
+        System.out.print("""
+                \n=================== AGREGAR PRODUCTO ====================
+                Por favor, ingrese los datos del producto.
+                =========================================================
+                """);
+
+        String id = Input.getString("ID Producto: ");
+        String nombre = Input.getString("Nombre: ");
+        int cantidad = Input.getInt("Cantidad inicial: ");
+        double precio = Input.getDouble("Precio: ");
         Input.scanner.nextLine();
 
         // Crear un nuevo producto y agregarlo al inventario de DataManager
-        Producto producto = new Producto(id, nombre, cantidad, precio);
+        Producto producto = new Producto(id.toUpperCase(), capitalizarPrimeraLetra(nombre), cantidad, precio);
         DataManager.agregarProducto(producto); // Asegúrate de tener un método para agregar productos en DataManager
 
         System.out.println("Producto agregado!");
     }
 
     private static void actualizarStock() {
-        Inventario.mostrarInventario();
-        System.out.print("ID Producto a actualizar: ");
-        String id = Input.scanner.nextLine();
+        mostrarInventario();
 
-        for (Producto p : DataManager.getInventario()) { // Cambiar para obtener productos desde DataManager
+        String id = Input.getString("""
+            \n=================== ACTUALIZAR STOCK ====================
+            Por favor, ingrese los datos del producto.
+            =========================================================
+            ID Producto para actualizar stock:\t""").toUpperCase();
+
+        for (Producto p : DataManager.getInventario()) { 
             if (p.getId().equals(id)) {
                 System.out.print("Nueva cantidad: ");
                 p.setCantidad(Input.scanner.nextInt());
@@ -67,5 +76,41 @@ public class Microempresario {
             }
         }
         System.out.println("Producto no encontrado!");
+    }
+
+    private static void actualizarProducto() {
+        mostrarInventario();
+
+        String id = Input.getString("""
+            \n================== ACTUALIZAR PRODUCTO ==================
+            Por favor, ingrese los datos del producto.
+            =========================================================
+            ID Producto para actualizar:\t""").toUpperCase();
+
+        for (Producto p : DataManager.getInventario()) {
+            if (p.getId().equals(id)) {
+
+                System.out.print("Nuevo nombre: ");
+                p.setNombre(capitalizarPrimeraLetra(Input.scanner.nextLine()));
+
+                System.out.print("Nueva cantidad: ");
+                p.setPrecio(Input.scanner.nextInt());
+                
+                System.out.print("Nuevo precio: ");
+                p.setPrecio(Input.scanner.nextDouble());
+
+                Input.scanner.nextLine();
+                System.out.println("Producto actualizado!");
+                return;
+            }
+        }
+        System.out.println("Producto no encontrado!");
+    }
+
+    private static String capitalizarPrimeraLetra(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
     }
 }
