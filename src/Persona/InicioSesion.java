@@ -1,6 +1,8 @@
 package Persona;
 
 import Data.DataManager;
+import Persona.Administrador.Administrador;
+
 import java.util.List;
 import Utils.Input;
 
@@ -38,8 +40,10 @@ public class InicioSesion {
 
     private static void menuRol() {
         switch (usuarioLogueado.getRol()) {
-            case "Microempresario" -> Microempresario.menuMicroempresario();
-            case "Vendedor" -> Vendedor.menuVendedor();
+            case "Administrador" -> Administrador.menuAdministrador();
+            case "M" -> Microempresario.menuMicroempresario();
+            case "V" -> Vendedor.menuVendedor();
+            
             default -> System.out.println("Rol no reconocido");
         }
     }

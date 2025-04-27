@@ -52,18 +52,17 @@ public class Vendedor {
             Inventario.mostrarInventario();
 
             System.out.print("ID Producto a vender: ");
-            String id = Input.scanner.nextLine();
+            String id = Input.scanner.nextLine().toUpperCase();
 
             List<Producto> inventario = DataManager.getInventario();
             boolean productoEncontrado = false;
 
             for (Producto p : inventario) {
-                // Verificar si el producto tiene stock disponible y coincide con el ID
-                // ingresado
+
                 if (p.getId().equals(id) && p.getCantidad() > 0) {
                     productoEncontrado = true;
-                    System.out.print("Cantidad: ");
-                    int cantidad = Input.scanner.nextInt();
+
+                    int cantidad = Input.getInt("Cantidad: ");
                     Input.scanner.nextLine(); // Limpiar el buffer
 
                     // Verificar si hay suficiente stock
@@ -99,6 +98,8 @@ public class Vendedor {
 
     public static void mostrarVentas() {
         List<Venta> ventas = DataManager.getVentas();
+        int contador = 1;
+        double sumatoriaVenta = 0;
 
         if (ventas.isEmpty()) {
             System.out.println("No hay ventas registradas.");
@@ -106,8 +107,13 @@ public class Vendedor {
         }
 
         for (Venta v : ventas) {
+            System.out.println("=== Venta " + contador++ + " ===");
+
+            sumatoriaVenta += v.calcularTotal();
             System.out.println(v);
+
         }
+        System.out.println("=== Total ventas del dia : $" + sumatoriaVenta + " ===");
     }
 
 }

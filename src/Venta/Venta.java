@@ -33,6 +33,8 @@ public class Venta {
         for (int i = 0; i < productosVenta.size(); i++) {
             Producto producto = productosVenta.get(i);
             int cantidad = cantidades.get(i);
+
+            detallesVenta.append("=== " + " ===\n");
             detallesVenta.append(String.format("Producto: %s | Cantidad: %d | Precio unitario: $%.2f\n",
                     producto.getNombre(), cantidad, producto.getPrecio()));
         }
