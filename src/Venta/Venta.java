@@ -21,7 +21,11 @@ public class Venta {
     public double calcularTotal() {
         double subtotal = 0;
         for (int i = 0; i < productosVenta.size(); i++) {
-            subtotal += productosVenta.get(i).getPrecio() * cantidades.get(i);
+            Producto producto = productosVenta.get(i);
+            int cantidad = cantidades.get(i);
+
+            double precioConDescuento = producto.getPrecio() * (1 - producto.getDescuento() / 100.0);
+            subtotal += precioConDescuento * cantidad;
         }
         return estrategia.calcularTotal(subtotal);
     }
@@ -35,8 +39,8 @@ public class Venta {
             int cantidad = cantidades.get(i);
 
             detallesVenta.append("---------------------------------------------------------\n");
-            detallesVenta.append(String.format("Producto: %s | Cantidad: %d | Precio unitario: $%.2f\n",
-                    producto.getNombre(), cantidad, producto.getPrecio()));
+            detallesVenta.append(String.format("Producto: %s | Cantidad: %d | Precio unitario: $%.2f | descuento: %.2f%%\n",
+                    producto.getNombre(), cantidad, producto.getPrecio(), producto.getDescuento()));
         }
         detallesVenta.append("---------------------------------------------------------\n");
         detallesVenta.append("Total: $").append(calcularTotal()).append(" |\n");

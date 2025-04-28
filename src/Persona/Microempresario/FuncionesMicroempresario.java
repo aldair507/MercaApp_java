@@ -7,10 +7,11 @@ import Producto.Producto;
 import Utils.Input;
 
 public class FuncionesMicroempresario {
-    
+
     public static void menuMicroempresario() {
         while (true) {
-            System.out.println("\n================ MICROEMPRESARIO "+InicioSesion.usuarioLogueado.getUsername()+" =================");
+            System.out.println("\n================ MICROEMPRESARIO " + InicioSesion.usuarioLogueado.getUsername()
+                    + " =================");
             System.out.print("""
                     1. Agregar producto
                     2. Actualizar producto
@@ -49,10 +50,19 @@ public class FuncionesMicroempresario {
         String nombre = Input.getString("Nombre: ");
         int cantidad = Input.getInt("Cantidad inicial: ");
         double precio = Input.getDouble("Precio: ");
+        double descuento = Input.getDouble("Descuento: ");
         Input.scanner.nextLine();
 
         // Crear un nuevo producto y agregarlo al inventario de DataManager
-        Producto producto = new Producto(id.toUpperCase(), capitalizarPrimeraLetra(nombre), cantidad, precio);
+        Producto producto = new Producto(
+                id.toUpperCase(),
+                capitalizarPrimeraLetra(nombre),
+                cantidad,
+                precio,
+                descuento
+
+        );
+
         DataManager.agregarProducto(producto); // Asegúrate de tener un método para agregar productos en DataManager
 
         System.out.println("Producto agregado!");
@@ -62,12 +72,12 @@ public class FuncionesMicroempresario {
         mostrarInventario();
 
         String id = Input.getString("""
-            \n=================== ACTUALIZAR STOCK ====================
-            Por favor, ingrese los datos del producto.
-            =========================================================
-            ID Producto para actualizar stock:\t""").toUpperCase();
+                \n=================== ACTUALIZAR STOCK ====================
+                Por favor, ingrese los datos del producto.
+                =========================================================
+                ID Producto para actualizar stock:\t""").toUpperCase();
 
-        for (Producto p : DataManager.getInventario()) { 
+        for (Producto p : DataManager.getInventario()) {
             if (p.getId().equals(id)) {
                 System.out.print("Nueva cantidad: ");
                 p.setCantidad(Input.scanner.nextInt());
@@ -83,10 +93,10 @@ public class FuncionesMicroempresario {
         mostrarInventario();
 
         String id = Input.getString("""
-            \n================== ACTUALIZAR PRODUCTO ==================
-            Por favor, ingrese los datos del producto.
-            =========================================================
-            ID Producto para actualizar:\t""").toUpperCase();
+                \n================== ACTUALIZAR PRODUCTO ==================
+                Por favor, ingrese los datos del producto.
+                =========================================================
+                ID Producto para actualizar:\t""").toUpperCase();
 
         for (Producto p : DataManager.getInventario()) {
             if (p.getId().equals(id)) {
@@ -96,7 +106,7 @@ public class FuncionesMicroempresario {
 
                 System.out.print("Nueva cantidad: ");
                 p.setPrecio(Input.scanner.nextInt());
-                
+
                 System.out.print("Nuevo precio: ");
                 p.setPrecio(Input.scanner.nextDouble());
 
@@ -114,5 +124,5 @@ public class FuncionesMicroempresario {
         }
         return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
     }
-    
+
 }

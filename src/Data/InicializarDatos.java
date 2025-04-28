@@ -5,6 +5,7 @@ import Persona.Administrador.Administrador;
 import Persona.Microempresario.Microempresario;
 import Persona.Vendedor.Vendedor;
 import Producto.Producto;
+
 import java.util.List;
 
 public class InicializarDatos {
@@ -19,8 +20,8 @@ public class InicializarDatos {
         DataManager.agregarUsuario(new Vendedor("vend1", "vend123", 3, "Vendedor"));
 
         // Productos iniciales
-        DataManager.agregarProducto(new Producto("P001", "Papa", 10, 1500.0));
-        DataManager.agregarProducto(new Producto("P002", "Yuca", 10, 2500.0));
+        DataManager.agregarProducto(new Producto("P001", "Papa", 10, 1500.0,  10));
+        DataManager.agregarProducto(new Producto("P002", "Yuca", 10, 2500.0,  10));
     }
 
 }

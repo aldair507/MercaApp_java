@@ -14,9 +14,9 @@ public class Inventario {
      */
     public static void mostrarInventario() {
         System.out.print("""
-                \n======================= INVENTARIO ======================
-                \tID   |   Nombre   |   Stock   |   Precio
-                =========================================================
+                \n======================= INVENTARIO =======================
+                \tID   |   Nombre   |   Stock   |   Precio   | Descuento
+                ============================================================
                 """);
         if (inventario.isEmpty()) {
             System.out.println("No hay productos en el inventario.");
@@ -29,7 +29,8 @@ public class Inventario {
                 System.out.println("ID: " + p.getId() +
                         " | Nombre: " + p.getNombre() +
                         " | Cantidad: " + p.getCantidad() +
-                        " | Precio: $" + p.getPrecio());
+                        " | Precio: $" + p.getPrecio() +
+                        " | Descuento: " + p.getDescuento() + "%");
             }
         }
         System.out.print("=========================================================\n");
