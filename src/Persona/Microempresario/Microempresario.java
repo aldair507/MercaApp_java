@@ -1,9 +1,9 @@
-package Persona.Administrador;
+package Persona.Microempresario;
 
 import Interfaces.IUsuario;
 import Persona.Persona;
 
-public class Administrador extends Persona implements IUsuario {
+public class Microempresario extends Persona implements IUsuario {
 
     private final int idUsuario;
     private String username;
@@ -11,12 +11,12 @@ public class Administrador extends Persona implements IUsuario {
     private String rol;
 
     // Constructor
-    public Administrador(String username, String password, int idUsuario, String rol) {
-        super(idUsuario, rol, true, null, null, null, 0, 0, null);
+    public Microempresario(String username, String password, int idUsuario, String rol) {
+        super(idUsuario, rol, true, null, null, null, 0, 0, null); 
         this.idUsuario = idUsuario;
         this.username = username;
         this.password = password;
-        this.rol = "Administrador";
+        this.rol = "Microempresario";
     }
 
     // Implementación de métodos de IUsuario
@@ -53,7 +53,8 @@ public class Administrador extends Persona implements IUsuario {
     // Implementación del método abstracto de Persona
     @Override
     public void mostrarInformacion() {
-        System.out.println("ID: " + idUsuario + " | Usuario: " + username + " | Rol: " + rol);
+        System.out.println("Microempresario: " + username);
+        System.out.println("ID: " + idUsuario);
+        System.out.println("Rol: " + rol);
     }
-
 }

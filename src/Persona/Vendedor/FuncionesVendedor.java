@@ -1,20 +1,17 @@
-package Persona;
+package Persona.Vendedor;
 
 import Data.DataManager;
 import Inventario.Inventario;
+import Persona.InicioSesion;
 import Producto.Producto;
 import Utils.Input;
 import Venta.CalculoConIVA;
 import Venta.Venta;
 import java.util.List;
 
-/**
- * Esta clase representa al vendedor en el sistema.
- * Permite realizar ventas y ver el historial de ventas.
- */
+public class FuncionesVendedor {
 
-public class Vendedor {
-
+    
     public static void menuVendedor() {
         while (true) {
 
@@ -115,4 +112,5 @@ public class Vendedor {
         System.out.println("============ Total ventas del dia : $" + sumatoriaVenta + " ============");
     }
 
+    
 }

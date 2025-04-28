@@ -1,14 +1,17 @@
 package Persona;
 
 import Data.DataManager;
-import Persona.Administrador.Administrador;
+import Interfaces.IUsuario;
+import static Persona.Administrador.FuncionesAdministrador.menuAdministrador;
+import static Persona.Microempresario.FuncionesMicroempresario.menuMicroempresario;
+import static Persona.Vendedor.FuncionesVendedor.menuVendedor;
 import Utils.Input;
 import java.util.List;
 
 public class InicioSesion {
 
-    public static List<Usuario> usuarios = DataManager.getUsuarios();
-    public static Usuario usuarioLogueado;
+    public static List<IUsuario> usuarios = DataManager.getUsuarios();
+    public static IUsuario usuarioLogueado;
 
     public static void iniciarSesion() {
         System.out.print("""
@@ -23,7 +26,7 @@ public class InicioSesion {
         // System.out.print("Contraseña: ");
         String contrasenaIngresada = Input.getString("Contraseña: ");
 
-        for (Usuario u : usuarios) {
+        for (IUsuario u : usuarios) {
             if (u.getUsername().equals(usuarioIngresado)) {
 
                 if (u.getPassword().equals(contrasenaIngresada)) {
@@ -43,9 +46,9 @@ public class InicioSesion {
 
     private static void menuRol() {
         switch (usuarioLogueado.getRol()) {
-            case "Administrador" -> Administrador.menuAdministrador();
-            case "Microempresario" -> Microempresario.menuMicroempresario();
-            case "Vendedor" -> Vendedor.menuVendedor();
+            case "Administrador" -> menuAdministrador();
+            case "Microempresario" -> menuMicroempresario();
+            case "Vendedor" -> menuVendedor();
 
             default -> System.out.println("Rol no reconocido");
         }

@@ -1,21 +1,20 @@
 package Data;
 
+import Interfaces.IUsuario;
+import Persona.Administrador.FuncionesAdministrador;
+import Producto.Producto;
+import Venta.Venta;
 import java.util.ArrayList;
 import java.util.List;
 
-import Persona.Usuario;
-import Persona.Administrador.ActalizarUsuarios;
-import Producto.Producto;
-import Venta.Venta;
-
 public class DataManager {
     // Arreglos globales
-    private static final List<Usuario> usuarios = new ArrayList<>();
+    private static final List<IUsuario> usuarios = new ArrayList<>();
     private static final List<Producto> inventario = new ArrayList<>();
     private static final List<Venta> ventas = new ArrayList<>();
 
     // Métodos estáticos para acceder a los arreglos
-    public static List<Usuario> getUsuarios() {
+    public static List<IUsuario> getUsuarios() {
         return usuarios;
     }
 
@@ -28,13 +27,13 @@ public class DataManager {
     }
 
     // Métodos para agregar elementos
-    public static void agregarUsuario(Usuario usuario) {
+    public static void agregarUsuario(IUsuario usuario) {
         usuarios.add(usuario);
     }
 
-    public static void setUsuarios(List<Usuario> usuarios) {
+    public static void setUsuarios(List<IUsuario> usuarios) {
 
-        ActalizarUsuarios.actualizarUsuario(usuarios.get(0));
+        FuncionesAdministrador.actualizarUsuario(usuarios.get(0));
     }
 
     public static void agregarProducto(Producto producto) {

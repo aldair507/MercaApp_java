@@ -1,6 +1,9 @@
 package Persona;
 
 import Data.DataManager;
+import Interfaces.IUsuario;
+import Persona.Microempresario.Microempresario;
+import Persona.Vendedor.Vendedor;
 import Utils.Input;
 
 public class Registro {
@@ -12,11 +15,11 @@ public class Registro {
         boolean rolValido = false;
 
         System.out.print("""
-            \n=================== REGISTRO DE USUARIO ==================
-            Por favor, complete los siguientes datos para registrarse.
-            ==========================================================      
-                    """);
-        
+                \n=================== REGISTRO DE USUARIO ==================
+                Por favor, complete los siguientes datos para registrarse.
+                ==========================================================
+                        """);
+
         user = Input.getString("Usuario: ");
         pass = Input.getString("Contrasena: ");
 
@@ -27,7 +30,13 @@ public class Registro {
             rolValido = validarRol(rol);
         } while (!rolValido);
 
-        Usuario usuario = new Usuario(user, pass, rol);
+        IUsuario usuario;
+
+        if (rol.equals("M")) {
+            usuario = new Microempresario(user, pass, generarNuevoId(), "Microempresario");
+        } else {
+            usuario = new Vendedor(user, pass, generarNuevoId(), "Vendedor");
+        }
 
         DataManager.agregarUsuario(usuario);
         System.out.println("Usuario registrado exitosamente!");
@@ -42,5 +51,9 @@ public class Registro {
 
         return true;
 
+    }
+
+    private static int generarNuevoId() {
+        return DataManager.getUsuarios().size() + 1;
     }
 }

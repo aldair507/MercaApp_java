@@ -1,12 +1,13 @@
-package Persona;
+package Persona.Microempresario;
 
 import Data.DataManager;
 import static Inventario.Inventario.mostrarInventario;
+import Persona.InicioSesion;
 import Producto.Producto;
 import Utils.Input;
 
-public class Microempresario {
-
+public class FuncionesMicroempresario {
+    
     public static void menuMicroempresario() {
         while (true) {
             System.out.println("\n================ MICROEMPRESARIO "+InicioSesion.usuarioLogueado.getUsername()+" =================");
@@ -113,4 +114,5 @@ public class Microempresario {
         }
         return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
     }
+    
 }

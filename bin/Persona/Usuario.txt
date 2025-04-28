@@ -1,6 +1,8 @@
 package Persona;
 
-public class Usuario {
+import Interfaces.IUsuario;
+
+public class Usuario implements IUsuario {
     private String username;
     private final String password;
     private String rol;
@@ -16,28 +18,34 @@ public class Usuario {
     }
 
     // Getters
+    @Override
     public String getUsername() {
         return username;
     }
 
+    @Override
     public int getIdUsuario() {
         return idUsuario;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
 
+    @Override
     public String getRol() {
         CompararRol(rol);
         return rol;
     }
 
     // Setters
+    @Override
     public void setUsername(String username) {
         this.username = username;
     }
 
+    @Override
     public void setRol(String rol) {
         CompararRol(rol);
 

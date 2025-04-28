@@ -1,9 +1,14 @@
-package Persona.Administrador;
+package Persona.Vendedor;
 
 import Interfaces.IUsuario;
 import Persona.Persona;
 
-public class Administrador extends Persona implements IUsuario {
+/**
+ * Esta clase representa al vendedor en el sistema.
+ * Permite realizar ventas y ver el historial de ventas.
+ */
+
+public class Vendedor extends Persona implements IUsuario {
 
     private final int idUsuario;
     private String username;
@@ -11,12 +16,12 @@ public class Administrador extends Persona implements IUsuario {
     private String rol;
 
     // Constructor
-    public Administrador(String username, String password, int idUsuario, String rol) {
+    public Vendedor(String username, String password, int idUsuario, String rol) {
         super(idUsuario, rol, true, null, null, null, 0, 0, null);
         this.idUsuario = idUsuario;
         this.username = username;
         this.password = password;
-        this.rol = "Administrador";
+        this.rol = "Vendedor";
     }
 
     // Implementación de métodos de IUsuario
@@ -53,7 +58,9 @@ public class Administrador extends Persona implements IUsuario {
     // Implementación del método abstracto de Persona
     @Override
     public void mostrarInformacion() {
-        System.out.println("ID: " + idUsuario + " | Usuario: " + username + " | Rol: " + rol);
+        System.out.println("Vendedor: " + username);
+        System.out.println("ID: " + idUsuario);
+        System.out.println("Rol: " + rol);
     }
 
 }
